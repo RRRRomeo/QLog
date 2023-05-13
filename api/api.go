@@ -1,6 +1,7 @@
 package api
 
 import (
+	std "log"
 	"sync"
 
 	"github.com/QLog/internal"
@@ -85,4 +86,12 @@ func Fatalf(fmt string, v ...any) {
 	logApi.Lock()
 	defer logApi.Unlock()
 	logApi.logger.Fatalf(fmt, v...)
+}
+
+func Printf(fmt string, v ...any) {
+	std.Printf(fmt, v...)
+}
+
+func Println(fmt string, v ...any) {
+	std.Println(v...)
 }

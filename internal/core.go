@@ -172,10 +172,18 @@ func printf(l *Logger, level LOG_LEVEL, format string, v ...any) {
 	if l.isout == 1 {
 		// ... output into file;
 		l.out_param.wg.Add(1)
-		go write(l.out_param.wg, l.out_param.out_fd, output) // ... async func need waitgroup it;
+		go func() {
+			_, e := write(l.out_param.wg, l.out_param.out_fd, output) // ... async func need waitgroup it;
+			if e != nil {
+				return
+			}
+		}()
 	}
 
-	l.std.Write(output)
+	_, e := l.std.Write(output)
+	if e != nil {
+		return
+	}
 	l.out_param.wg.Wait()
 }
 
