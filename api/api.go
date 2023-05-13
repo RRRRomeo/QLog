@@ -1,8 +1,9 @@
 package api
 
 import (
-	"map_chan/log/internal"
 	"sync"
+
+	"github.com/QLog/internal"
 )
 
 type LogApi struct {
