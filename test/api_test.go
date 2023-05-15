@@ -3,7 +3,7 @@ package api
 import (
 	"testing"
 
-	"github.com/QLog/api"
+	"github.com/RRRRomeo/QLog/api"
 )
 
 func TestDebugf(t *testing.T) {
