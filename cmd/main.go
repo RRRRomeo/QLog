@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/QLog/api"
+	"github.com/RRRRomeo/QLog/api"
 )
 
 func main() {
