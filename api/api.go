@@ -4,7 +4,7 @@ import (
 	std "log"
 	"sync"
 
-	"github.com/QLog/internal"
+	"github.com/RRRRomeo/QLog/internal"
 )
 
 type LogApi struct {
