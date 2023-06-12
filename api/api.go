@@ -9,11 +9,17 @@ import (
 
 type LogApi struct {
 	sync.Mutex
-	logger *internal.Logger
+	Logger *internal.Logger
 }
 
 var logApi LogApi = LogApi{
-	logger: internal.NewLogger(internal.LOG_LEVEL_DBG, 4),
+	Logger: internal.NewLogger(internal.LOG_LEVEL_DBG, 4),
+}
+
+func NewLogApi(log_level uint8, isout uint8, out_ffp string) *LogApi {
+	return &LogApi{
+		Logger: internal.NewLoggerWithOutter(internal.LOG_LEVEL(log_level), isout, out_ffp),
+	}
 }
 
 func LoggerInit(l uint8, isout uint8, out_ffp string) *internal.Logger {
@@ -28,64 +34,64 @@ func (log *LogApi) Debugf(fmt string, v ...any) {
 	log.Lock()
 	defer log.Unlock()
 
-	log.logger.Debugf(fmt, v...)
+	log.Logger.Debugf(fmt, v...)
 }
 
 func Debugf(fmt string, v ...any) {
 	logApi.Lock()
 	defer logApi.Unlock()
 
-	logApi.logger.Debugf(fmt, v...)
+	logApi.Logger.Debugf(fmt, v...)
 }
 
 func (log *LogApi) Infof(fmt string, v ...any) {
 	log.Lock()
 	defer log.Unlock()
 
-	log.logger.Infof(fmt, v...)
+	log.Logger.Infof(fmt, v...)
 }
 
 func Infof(fmt string, v ...any) {
 	logApi.Lock()
 	defer logApi.Unlock()
 
-	logApi.logger.Infof(fmt, v...)
+	logApi.Logger.Infof(fmt, v...)
 }
 
 func (log *LogApi) Warnf(fmt string, v ...any) {
 	log.Lock()
 	defer log.Unlock()
-	log.logger.Warnf(fmt, v...)
+	log.Logger.Warnf(fmt, v...)
 }
 
 func Warnf(fmt string, v ...any) {
 	logApi.Lock()
 	defer logApi.Unlock()
-	logApi.logger.Warnf(fmt, v...)
+	logApi.Logger.Warnf(fmt, v...)
 }
 
 func (log *LogApi) Errf(fmt string, v ...any) {
 	log.Lock()
 	defer log.Unlock()
-	log.logger.Errf(fmt, v...)
+	log.Logger.Errf(fmt, v...)
 }
 
 func Errf(fmt string, v ...any) {
 	logApi.Lock()
 	defer logApi.Unlock()
-	logApi.logger.Errf(fmt, v...)
+	logApi.Logger.Errf(fmt, v...)
 }
 
 func (log *LogApi) Fatalf(fmt string, v ...any) {
 	log.Lock()
 	defer log.Unlock()
-	log.logger.Fatalf(fmt, v...)
+	log.Logger.Fatalf(fmt, v...)
 }
 
 func Fatalf(fmt string, v ...any) {
 	logApi.Lock()
 	defer logApi.Unlock()
-	logApi.logger.Fatalf(fmt, v...)
+	logApi.Logger.Fatalf(fmt, v...)
 }
 
 func Printf(fmt string, v ...any) {
