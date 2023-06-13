@@ -95,7 +95,7 @@ func (l *Logger) SetOutter(isout uint8, out_ffp string) error {
 }
 
 func NewLoggerWithOutter(l LOG_LEVEL, isout uint8, out_ffp string) *Logger {
-	logger := NewLogger(l, 3)
+	logger := NewLogger(l, 4)
 	err := logger.SetOutter(isout, out_ffp)
 	if err != nil {
 		return nil
